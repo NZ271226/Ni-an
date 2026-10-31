@@ -183,22 +183,8 @@ a{color:inherit}
 .dress .cap{margin:5cqw 0 0;font:italic 500 5.6cqw/1.3 var(--serif);color:var(--ink)}
 .dress .cap2{margin:2.4cqw auto 0;max-width:62cqw;font:500 3.9cqw/1.45 var(--serif);color:var(--ink-soft);text-wrap:balance}
 
-/* wishes form */
-.lead{margin:4cqw 0 0;font:500 5.4cqw/1.35 var(--serif);color:var(--ink);text-wrap:balance}
-.fld{width:100%;text-align:left;margin-top:5.5cqw}
-.fld label{display:block;margin:0 0 1.6cqw;font:600 3.6cqw/1 var(--serif);letter-spacing:.2em;text-transform:uppercase;color:var(--gold-deep)}
-.fld input{width:100%;height:14cqw;padding:0 4cqw;border:.35cqw solid rgba(201,165,76,.8);border-radius:2cqw;background:rgba(253,250,243,.95);font:500 5.6cqw var(--serif);font-variant-numeric:lining-nums;color:var(--ink);appearance:none;-webkit-appearance:none}
-.fld textarea{width:100%;padding:3.4cqw 4cqw;border:.35cqw solid rgba(201,165,76,.8);border-radius:2cqw;background:rgba(253,250,243,.95);font:500 5cqw/1.35 var(--serif);color:var(--ink);resize:vertical;min-height:34cqw;outline:none;box-sizing:border-box}
-.fld input:focus,.fld textarea:focus{border-color:var(--gold-deep);outline:none;box-shadow:0 0 0 .8cqw rgba(201,165,76,.2)}
-.fld input::placeholder,.fld textarea::placeholder{color:#A99A80}
-.wsh{padding-top:28cqw;padding-bottom:30cqw}
-.wsh .h2{font:600 7.4cqw/1 var(--serif);letter-spacing:.18em;padding-left:.18em;white-space:nowrap;text-transform:uppercase}
-.rsvp-actions{display:grid;gap:3cqw;width:100%;margin-top:7cqw}
-.rsvp-actions .btn{width:100%}
-.warn{margin:3cqw 0 0;min-height:5cqw;font:italic 500 4.2cqw/1.2 var(--serif);color:#A0452F}
-
 /* thanks + footer */
-.thxsec{min-height:150cqw}
+
 .thxsec .tfr{position:absolute;inset:0;width:100%;height:100%;filter:drop-shadow(0 1.4cqw 3cqw rgba(140,106,31,.16))}
 .thxsec .k{position:absolute;width:24cqw;height:24cqw;overflow:visible}
 .thxsec .k.tl{left:3.6cqw;top:3.6cqw}.thxsec .k.tr{right:3.6cqw;top:3.6cqw;transform:scaleX(-1)}
@@ -399,21 +385,6 @@ a{color:inherit}
     </div>
   </section>
 
-  <section class="sec mir" aria-label="Ürək sözləri">
-    <div class="frm"></div>
-    <svg class="crn tl" viewBox="0 0 200 200" aria-hidden="true"><use href="#crn"/></svg>
-    <svg class="crn br" viewBox="0 0 200 200" aria-hidden="true"><use href="#crn"/></svg>
-    <div class="sec-in wsh">
-      <h2 class="h2 alt"><span class="foil">Ürək sözləri</span></h2>
-      <div class="orn"><i></i></div>
-      <p class="lead">Gələcək ailəmiz üçün xoş arzularınızı yazın</p>
-      <div class="fld"><label for="wi-name">Adınız</label><input id="wi-name" type="text" autocomplete="name" placeholder="Ad və soyad"></div>
-      <div class="fld"><label for="wi-txt">Ürək sözləriniz</label><textarea id="wi-txt" rows="5" placeholder="Zamin və Nərmin üçün ürək sözlərinizi yazın..."></textarea></div>
-      <div class="rsvp-actions"><a class="btn gold" id="wi-send" href="#" target="_blank" rel="noopener">WhatsApp ilə göndər</a></div>
-      <p class="warn" id="wi-warn" role="status"></p>
-    </div>
-  </section>
-
   <footer class="foot">
     <div class="mono" aria-label="Z &amp; N"><b class="foil">Z &amp; N</b></div>
     <span>27.12.2026</span>
@@ -432,7 +403,6 @@ a{color:inherit}
 <script>
 (function(){
   /* --- config --- */
-  var WA_NUMBER='994XXXXXXXXX';   // digits only, no + or spaces
   var EVENT_ISO='2026-12-27T18:00:00+04:00';  // Baku time
 
   var root=document.documentElement; root.classList.add('lock');
@@ -457,18 +427,6 @@ a{color:inherit}
     ids[0].textContent=pad(d); ids[1].textContent=pad(h); ids[2].textContent=pad(m); ids[3].textContent=pad(s);
   }
   var timer=setInterval(tick,1000); tick();
-
-  /* --- wishes via WhatsApp --- */
-  (function(){
-    var wn=document.getElementById('wi-name'), wt=document.getElementById('wi-txt'), ws=document.getElementById('wi-send'), ww=document.getElementById('wi-warn');
-    function wl(){return 'https://wa.me/'+WA_NUMBER+'?text='+encodeURIComponent('Zamin və Nərmin üçün ürək sözlərim:\n\n'+(wt.value||'').trim()+'\n\n— '+(wn.value||'').trim())}
-    ws.addEventListener('click',function(e){
-      if(!(wn.value||'').trim()){e.preventDefault();ww.textContent='Zəhmət olmasa adınızı yazın';wn.focus();return}
-      if(!(wt.value||'').trim()){e.preventDefault();ww.textContent='Zəhmət olmasa ürək sözlərinizi yazın';wt.focus();return}
-      ww.textContent=''; ws.href=wl();
-    });
-    ws.href=wl();
-  })();
 
   /* --- program: heart glides along the wavy line as the page scrolls --- */
   (function(){
